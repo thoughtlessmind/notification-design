@@ -12,9 +12,27 @@ const divCreator = (HTMLTag, classNames, innerHTML) => {
   return d
 }
 
-const ACTIVE_NOTIFICATION_TYPE = "custom"
+const ACTIVE_NOTIFICATION_TYPE = "review"
+
+const starSVG = `<svg xmlns="http://www.w3.org/2000/svg" style="width:10px" version="1.1" viewBox="0 0 24 24">
+<g class="toast-svg-fill" fill="#105efb" fill-opacity="1">
+    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+</g>
+</svg>`
 
 
+const imageAssets = {
+  googleLogo: "https://storage.googleapis.com/influence-197607.appspot.com/googlereview.png",
+  googleYellowStar: `<svg focusable="false" style="width:15px; fill:#ffc136" viewBox="0 0 24 24" aria-hidden="true"><path transform="scale(1.33, 1.33)" d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z"></path></svg>`,
+  trustPilotLogo: "https://api.useinfluence.co/images/trustpilot.png",
+  trustPilotStarSVG: `<svg style="width:10px" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 24 24">
+  <g class="toast-svg-fill" fill="#105efb" fill-opacity="1">
+      <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/>
+  </g>
+</svg>`,
+  stampedLogo: "https://api.useinfluence.co/images/stamped.png",
+  stampedStar: "https://app.useinfluence.co/static/media/stamped.3eca7fdc.png",
+}
 
 /**
  * Create and return element left side container of the notification
@@ -134,6 +152,51 @@ const footerCreator = (type) => {
     return slugBtn
   }
 
+  const reviewStarCreator = (fromAppType, starCount) => {
+    const reviewMainContainer = divCreator("div", `reviewMainContainer ${fromAppType}-reviewMainContainer`)
+    const reviewTypeLogo = divCreator("img", `reviewTypeLogo ${fromAppType}-reviewTypeLogo`)
+    const starIconContainer = divCreator("span", "starIconContainer")
+
+    if (fromAppType === "facebook") {
+      reviewTypeLogo.setAttribute("src", "https://api.useinfluence.co/images/recurly.png")
+      const fbRecommendIcon = divCreator("img", "fbRecommendIcon")
+      fbRecommendIcon.setAttribute("src", "https://app.useinfluence.co/static/media/fbRecommendation.88544430.png")
+      starIconContainer.appendChild(fbRecommendIcon)
+    } else if (fromAppType === "capterra") {
+      reviewTypeLogo.setAttribute("src", "https://s3.wasabisys.com/influencelogo/logo/capterra_logo.svg")
+      let totalStars = ""
+      for (let i = 0; i < starCount; i++) {
+        totalStars += starSVG
+      }
+      starIconContainer.innerHTML = totalStars
+    } else if (fromAppType === "trustpilot") {
+      reviewTypeLogo.setAttribute("src", imageAssets.trustPilotLogo)
+      let totalStars = ""
+      for (let i = 0; i < starCount; i++) {
+        totalStars += imageAssets.trustPilotStarSVG
+      }
+      starIconContainer.innerHTML = totalStars
+    } else if (fromAppType === "stamped") {
+      reviewTypeLogo.setAttribute("src", imageAssets.stampedLogo)
+      let totalStars = ""
+      for (let i = 0; i < starCount; i++) {
+        totalStars += imageAssets.trustPilotStarSVG
+      }
+      starIconContainer.innerHTML = totalStars
+    } else {
+      reviewTypeLogo.setAttribute("src", imageAssets.googleLogo)
+      let totalStars = ""
+      for (let i = 0; i < starCount; i++) {
+        totalStars += imageAssets.googleYellowStar
+      }
+      starIconContainer.innerHTML = totalStars
+    }
+
+    reviewMainContainer.appendChild(reviewTypeLogo)
+    reviewMainContainer.appendChild(starIconContainer)
+    return reviewMainContainer
+  }
+
   /**
    * Main parent container of footer.
    */
@@ -152,6 +215,10 @@ const footerCreator = (type) => {
     let slugBtn = customSlugBtnCreator()
     mainContainer.style = "justify-content: space-between; flex-direction:row-reverse"
     mainContainer.appendChild(slugBtn)
+  } else if(type === "review"){
+    let reviewStars = reviewStarCreator('stamped', 3)
+    mainContainer.style = "justify-content: space-between"
+    mainContainer.appendChild(reviewStars)
   } else {
     mainContainer.style = "justify-content: center"
   }

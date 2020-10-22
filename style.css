@@ -181,6 +181,7 @@ body {
   font-family: sans-serif;
   color: #077fff;
   letter-spacing: .25px;
+  text-transform:capitalize;
 }
 
 .customSlugBtn{
@@ -195,6 +196,25 @@ body {
   border-radius: 3px;
   text-transform: capitalize;
   background-color: rgb(9, 127, 255);
+}
+
+.reviewMainContainer {
+  display: flex;
+  align-items: center;
+}
+.reviewMainContainer .reviewTypeLogo  {
+  width: auto;
+  height: 10px;
+  margin-right: 5px;
+}
+
+.starIconContainer{
+  display:flex;
+  align-items: center;
+}
+.starIconContainer .fbRecommendIcon{
+  width: auto;
+  height: 10px;
 }
 
 .animation-wrapper{
