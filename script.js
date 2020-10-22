@@ -12,19 +12,15 @@ const divCreator = (HTMLTag, classNames, innerHTML) => {
   return d
 }
 
-const NOTIFICATION_TYPE = "review"
+const NOTIFICATION_TYPE = "bulk"
+
+
 
 /**
  * Create and return element left side container of the notification
  */
-const leftSideContainer = () => {
+const leftSideContainer = (type, imageSrc) => {
   const leftContainer = divCreator("div", "leftContainer")
-  const imageElement = divCreator("img", "imageStyle")
-  imageElement.setAttribute(
-    "src",
-    "https://s3.wasabisys.com/influencelogo/logo/fire-icon.png"
-  )
-  leftContainer.appendChild(imageElement)
   return leftContainer
 }
 
@@ -36,6 +32,25 @@ const rightSideContainer = () => {
 const footerContainer = () => {
   let div = divCreator("div", "footerContainer")
   return div
+}
+
+const leftSideCreator = (type) => {
+  if (type === "live") {
+    const animationWrapper = divCreator("div", "animation-wrapper")
+    const animationClass = divCreator("div", "animationClass")
+    const circle_2 = divCreator("div", "circle-2")
+
+    animationClass.appendChild(circle_2)
+    animationWrapper.appendChild(animationClass)
+    leftSideElement.appendChild(animationWrapper)
+  } else {
+    const imageElement = divCreator("img", `imageStyle ${type + "-imageStyle"}`)
+    imageElement.setAttribute(
+      "src",
+      "https://s3.wasabisys.com/influencelogo/logo/fire-icon.png"
+    )
+    leftSideElement.appendChild(imageElement)
+  }
 }
 
 const rightSideTextCreator = (type) => {
@@ -135,22 +150,23 @@ const footerCreator = (type) => {
   footerElement.appendChild(mainContainer)
 }
 
-const mainDiv = divCreator("div", "influence-social-proof")
-const mainFlexContainer = divCreator("div", "mainFlexContainer")
+const influenceSocialProof = divCreator("div", "influence-social-proof")
+const parentContentWrapper = divCreator("div", "parentContentWrapper")
 const rightFlexContainer = divCreator("div", "rightFlexContainer")
 
 const rightSideElement = rightSideContainer()
 const footerElement = footerContainer()
 const leftSideElement = leftSideContainer()
 
+leftSideCreator(NOTIFICATION_TYPE)
 rightSideTextCreator(NOTIFICATION_TYPE)
 footerCreator(NOTIFICATION_TYPE)
 
 rightFlexContainer.appendChild(rightSideElement)
 rightFlexContainer.appendChild(footerElement)
 
-mainFlexContainer.appendChild(leftSideElement)
-mainFlexContainer.appendChild(rightFlexContainer)
+parentContentWrapper.appendChild(leftSideElement)
+parentContentWrapper.appendChild(rightFlexContainer)
 
-mainDiv.appendChild(mainFlexContainer)
-document.body.appendChild(mainDiv)
+influenceSocialProof.appendChild(parentContentWrapper)
+document.body.appendChild(influenceSocialProof)

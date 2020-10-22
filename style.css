@@ -28,49 +28,56 @@ body {
 }
 
 
-.mainFlexContainer{
+.parentContentWrapper{
     display: flex;
     align-items: center;
     width: 100%;
     height: 100%;
 }
 
-.mainFlexContainer > .leftContainer{
+.parentContentWrapper > .leftContainer{
     width:72px;
     height:72px;
     /* background-color: green; */
     margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content:center
 }
 
-.mainFlexContainer > .leftContainer > .imageStyle{
+.parentContentWrapper .leftContainer  .imageStyle{
   text-align: center;
   box-sizing: border-box;
   border: none;
   max-width: 100%;
   vertical-align: middle;
   display: inline-block;
-  width: 100%;
   object-fit: contain;
   box-shadow: 0 0 1px #d0d0d0;
   margin: 0;
   padding: 0;
-  height: 72px;
   border-radius: 50px;
+  height: 42px;
+  width: 42px;
+}
+.parentContentWrapper .leftContainer  .recent-imageStyle{
+  height: 72px;
+  width: 100%;
 }
 
-.mainFlexContainer .rightFlexContainer{
+.parentContentWrapper .rightFlexContainer{
     width: 258px;
     height:100%;
 }
 
-.mainFlexContainer .rightSideContainer{
+.parentContentWrapper .rightSideContainer{
   width: 100%;
   height:66px;
   display:flex;
   align-items: center;
 }
 
-.mainFlexContainer > .footerContainer{
+.parentContentWrapper > .footerContainer{
   width:100%;
   height: 13px;
   /* background-color:yellow */
@@ -219,13 +226,57 @@ color: rgb(102, 102, 102);
   letter-spacing: .25px;
 }
 
+.animation-wrapper{
+  height: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animation-wrapper .animationClass,
+.animation-wrapper .circle-2{
+    border-radius: 50%;  
+    width: 36px;
+    height: 36px;
+    background: #0095f7;
+    box-shadow: 0 0 0 rgba(0,149,247,.4);
+    margin: auto;
+    /*padding: 0px;*/
+    color: white;
+    font-size: 17px;
+    text-align: center;
+    line-height: 36px;
+    padding: 0px;
+}
+/* @media screen and (min-width:480px) {
+    .animation-wrapper .animationClass,
+    .animation-wrapper .circle-2 {
+        border-radius: 50%;
+    }
+} */
+.animation-wrapper .animationClass {
+    animation: animationClass 3s linear infinite;
+}
+.animation-wrapper .circle-2 {
+    animation: animationClass 3s linear infinite 1.5s;
+}
+@keyframes animationClass {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0,149,247,.4);
+  }
+
+  to {
+    box-shadow: 0 0 0 19px rgba(0,149,247,0);
+  }
+}
+
 @media only screen and (max-width: 600px){
 
-  .mainFlexContainer{
+  .parentContentWrapper{
     flex-direction: row-reverse;
   }
 
-  .mainFlexContainer .rightFlexContainer{
+  .parentContentWrapper .rightFlexContainer{
     display: flex;
     flex-direction: column-reverse;
   }
