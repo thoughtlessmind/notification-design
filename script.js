@@ -12,7 +12,7 @@ const divCreator = (HTMLTag, classNames, innerHTML) => {
   return d
 }
 
-const NOTIFICATION_TYPE = "bulk"
+const ACTIVE_NOTIFICATION_TYPE = "custom"
 
 
 
@@ -20,19 +20,20 @@ const NOTIFICATION_TYPE = "bulk"
  * Create and return element left side container of the notification
  */
 const leftSideContainer = (type, imageSrc) => {
-  const leftContainer = divCreator("div", "leftContainer")
+  const leftContainer = divCreator("div", `leftContainer ${ACTIVE_NOTIFICATION_TYPE}-leftContainer`)
   return leftContainer
 }
 
 const rightSideContainer = () => {
-  let div = divCreator("div", "rightSideContainer")
+  let div = divCreator("div", `rightSideContainer ${ACTIVE_NOTIFICATION_TYPE}-rightSideContainer`)
   return div
 }
 
 const footerContainer = () => {
-  let div = divCreator("div", "footerContainer")
+  let div = divCreator("div", `footerContainer ${ACTIVE_NOTIFICATION_TYPE}-footerContainer`)
   return div
 }
+
 
 const leftSideCreator = (type) => {
   if (type === "live") {
@@ -106,7 +107,7 @@ const footerCreator = (type) => {
    * @param {URL} poweredByLink Powered by link
    */
   const brandingElementCreator = (verifiedBy, brandName, poweredByLink) => {
-    const brandingContainer = divCreator("p", "brandContainer")
+    const brandingContainer = divCreator("p", `brandContainer ${type + "-brandContainer"}`)
     const verifiedBySpan = divCreator("span", "verifiedBySpan", verifiedBy)
     const checkSpan = divCreator("span", "checkIcon", checkSVG)
     const brandNameSpan = divCreator("a", "brandNameSpan", brandName)
@@ -128,6 +129,11 @@ const footerCreator = (type) => {
     return timeElementContainer
   }
 
+  const customSlugBtnCreator = () => {
+    const slugBtn = divCreator("button", "customSlugBtn", "slug")
+    return slugBtn
+  }
+
   /**
    * Main parent container of footer.
    */
@@ -142,6 +148,10 @@ const footerCreator = (type) => {
     let timeElement = timeElementCreator("9 min(s) ago")
     mainContainer.style = "justify-content: space-between"
     mainContainer.appendChild(timeElement)
+  } else if( type === "custom"){
+    let slugBtn = customSlugBtnCreator()
+    mainContainer.style = "justify-content: space-between; flex-direction:row-reverse"
+    mainContainer.appendChild(slugBtn)
   } else {
     mainContainer.style = "justify-content: center"
   }
@@ -158,9 +168,9 @@ const rightSideElement = rightSideContainer()
 const footerElement = footerContainer()
 const leftSideElement = leftSideContainer()
 
-leftSideCreator(NOTIFICATION_TYPE)
-rightSideTextCreator(NOTIFICATION_TYPE)
-footerCreator(NOTIFICATION_TYPE)
+leftSideCreator(ACTIVE_NOTIFICATION_TYPE)
+rightSideTextCreator(ACTIVE_NOTIFICATION_TYPE)
+footerCreator(ACTIVE_NOTIFICATION_TYPE)
 
 rightFlexContainer.appendChild(rightSideElement)
 rightFlexContainer.appendChild(footerElement)

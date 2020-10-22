@@ -85,32 +85,30 @@ body {
 
 
 .span1Element{
-  line-height: 1;
-box-sizing: border-box;
-text-decoration: none;
-border-radius: 2px;
-font-size: 17px;
-padding: 2px 2px 2px 4px;
-font-weight: bold;
-font-style: normal;
-text-align: left;
-font-family: sans-serif;
-color: rgb(44, 102, 195);
-text-transform: capitalize;
-background-color: rgb(243, 247, 255);
+  text-decoration: none;
+  border-radius: 2px;
+  font-size: 17px;
+  padding: 2px 2px 2px 4px;
+  font-weight: bold;
+  font-style: normal;
+  text-align: left;
+  font-family: sans-serif;
+  color: rgb(44, 102, 195);
+  text-transform: capitalize;
+  background-color: rgb(243, 247, 255);
 }
 
 .span2Element{
   line-height: 1;
-box-sizing: border-box;
-text-decoration: none;
-font-size: 11px;
-font-style: normal;
-letter-spacing: 0.3px;
-padding-left: 2px;
-font-family: sans-serif;
-font-weight: normal;
-color: rgb(102, 102, 102);
+  box-sizing: border-box;
+  text-decoration: none;
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: 0.3px;
+  padding-left: 2px;
+  font-family: sans-serif;
+  font-weight: normal;
+  color: rgb(102, 102, 102);
 }
 
 .twoLineContent{
@@ -120,12 +118,6 @@ color: rgb(102, 102, 102);
 
 .footerWrapper{
   font-size: 15px;
-  line-height: 24px;
-  cursor: pointer;
-  font-family: inherit;
-  font-weight: normal;
-  color: rgb(0, 149, 247) !important;
-  box-sizing: border-box;
   text-align: center;
   max-height: 14px;
   margin-top: .05px;
@@ -136,9 +128,7 @@ color: rgb(102, 102, 102);
 }
 
 .timeELementContainer{
-  cursor: pointer;
   text-align: center;
-  box-sizing: border-box;
   font-size: 9.5px;
   color: #5b6173;
   padding-left: 0;
@@ -151,16 +141,9 @@ color: rgb(102, 102, 102);
 }
 
 .brandContainer{
-  cursor: pointer;
-  font-family: inherit;
-  color: rgb(0, 149, 247) !important;
   text-align: center;
-  box-sizing: border-box;
   margin: 0;
   padding-right: 0;
-  line-height: initial;
-  font-size: inherit;
-  font-weight: inherit;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -169,9 +152,6 @@ color: rgb(102, 102, 102);
 }
 
 .brandContainer > .verifiedBySpan{
-  cursor: pointer;
-  line-height: initial;
-  box-sizing: border-box;
   font-size: 9.25px;
   font-style: normal;
   text-align: left;
@@ -183,33 +163,10 @@ color: rgb(102, 102, 102);
 }
 
 .brandContainer > .checkIcon{
-  cursor: pointer;
-  font-family: inherit;
-  color: rgb(0, 149, 247) !important;
-  text-align: center;
-  line-height: initial;
-  font-size: inherit;
-  font-weight: inherit;
-  box-sizing: border-box;
-  height: 9px;
   margin-right: 2.5px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.brandContainer > .verifiedBySpan{
-  cursor: pointer;
-  line-height: initial;
-  box-sizing: border-box;
-  font-size: 9.25px;
-  font-style: normal;
-  text-align: left;
-  color: #909090;
-  font-family: sans-serif;
-  word-spacing: 1px;
-  font-weight: 500;
-  padding-right: 2.5px;
 }
 
 .brandContainer > .brandNameSpan{
@@ -224,6 +181,20 @@ color: rgb(102, 102, 102);
   font-family: sans-serif;
   color: #077fff;
   letter-spacing: .25px;
+}
+
+.customSlugBtn{
+  box-sizing: border-box;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  font-size: 9px;
+  font-family: sans-serif;
+  line-height: 1.45;
+  border-radius: 3px;
+  text-transform: capitalize;
+  background-color: rgb(9, 127, 255);
 }
 
 .animation-wrapper{
@@ -248,12 +219,7 @@ color: rgb(102, 102, 102);
     line-height: 36px;
     padding: 0px;
 }
-/* @media screen and (min-width:480px) {
-    .animation-wrapper .animationClass,
-    .animation-wrapper .circle-2 {
-        border-radius: 50%;
-    }
-} */
+
 .animation-wrapper .animationClass {
     animation: animationClass 3s linear infinite;
 }
